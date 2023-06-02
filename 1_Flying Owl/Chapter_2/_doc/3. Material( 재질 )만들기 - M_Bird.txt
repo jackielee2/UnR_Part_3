@@ -1,0 +1,159 @@
+==================================================================
+1-3. Material( 재질 )만들기 - M_Bird
+	[ 참고	:	https://blog.naver.com/foxmann/220261495259
+				https://docs.unrealengine.com/ko/Engine/Rendering/Materials/MaterialProperties/LightingModels/index.html ]
+==================================================================
+--------------------------------------------------
+1]	머터리얼 만들기.	
+--------------------------------------------------
+
+	---------------------------
+	1>	참새 머터리얼 만들기.
+	---------------------------
+
+		------------------
+		1)	머터리얼 생성
+		------------------
+
+			-	이름과 이미지만 다를 뿐 노드 구성은 [ M_Gift ]과 같으므로
+				[ M_Gift ]를 복제하여 사용.
+
+
+			-	복제
+				-	[ M_Gift ] 머터리얼 선택 > [ 마우스 우클릭 ] > [ 복제 ]
+					-	[ 이름 ]		:	[ M_Bird ]
+
+
+			-	속성
+				-	[ Texture Sample 노드 ] 추가
+					-	[ 디테일 창 ] > [ 머터리얼 표현식 텍스처 베이스 ]	:	[ bird_107x92x6.png ]
+				-	[ M_Bird ] 속성
+					-	[ 디테일 ] > [ 머터리얼 ]
+						-	[ Shading Model ]	:	[ Unlit ]
+						-	[ Blend Mode ]		:	[ Masked ]
+
+
+
+		------------------
+		2)	[ TextureCoordinate 노드 ] 추가
+		------------------
+
+			-	[ TextureCoordinate ]
+				-	UV 텍스처 좌표를 관리하며 주로 타일링을 설정하는데 사용.
+			
+
+			-	실습.
+
+				1)	[ 노드 검색 창 ] > "TextureCoordinate" 검색 >
+					[ TextureCoordinate 노드 ] 추가.
+
+				2)	[ TextureCoordinate 노드 ] > [ UTiling ]		:	[ 0.16667 ]
+					-	1/6 = 0.16667
+					-	UTiling
+						-	텍스처의 uv좌표계에서 u 방향의 타일링 양 설정.
+						-	이미지의 타일링 길이만 설정가능,
+							시작 위치 설정 기능은 없음.
+
+
+			-	연결
+				-	[ TextureCoordinate 노드 ] > [ 출력 핀 ]
+					----->	[ Texture Sample 노드 ] > [ UVs 핀 ]
+
+
+
+		------------------
+		3)	[ TextureCoordinate 노드 ] 쪼개기
+		------------------
+
+			-	실습.
+				1)	[ TexCoord 노드 ] > [ 출력 핀 ]
+					---/-->	[ Texture Sample 노드 ] > [ UVs 핀 ]
+
+
+				2)	[ 노드 검색 창 ] > "mask" > [ ComponentMask 노드 ] 추가.
+					-	[ ComponentMask 노드 ] 2개 생성.
+					-	각각 [ ComponentMask 노드 ] > [ Material Expression Component Mask ] > [ R ], [ G ]로 설정.
+						-	[ TexCoord 노드 ] > [ UTiling ] / [ VTiling ] 값을 [ Mask ( R ) ] / [ Mask ( G ) ] 노드로 전달.
+
+		
+		------------------
+		4)	Mask(R)에 Constant(상수) 더하기
+		------------------
+
+			-	개요.
+				-	Constant
+					-	하나의 실수( float ) 값을 설정할 수 있는 노드.
+					-	상수 데이터.
+
+			-	실습.
+				1)	[ Constant 노드 ] 추가. > [ 디테일 창 / Value ]		:	[ 0.5 ]
+					-	( 1 / 6 ) x 3 -> 세번째 이미지의 시작 위치.
+					-	3번째 이미지 연출되는지 확인.
+
+				2)	[ Add 노드 ] 추가. > 
+					[ Constant 노드 ( 0.5 ) 출력핀 ] & [ Mask ( R ) 노드 출력핀 ]   ---------> [ Add 노드 A, B 핀]
+					
+
+
+		------------------
+		5)	Mask 노드 합치기
+		------------------
+
+			-	개요
+				-	Append Vector
+					-	두개의 데이터를 입력받아 채널을 합침.
+						예) 0.2, 0.4		->	( 0.2, 0.4 )
+
+					-	uv채널이 2개의 채널로 데이터 구성됨.
+
+			-	실습.
+				1)	[ Append Vector 노드 ] 추가.		->
+					[ Add 노드 ] > [ 출력핀	]		--------->	[ Append Vector 노드 ] > [ A 핀 ]
+					[ Mask ( G ) 노드] > [ 출력핀 ]	--------->	[ Append Vector 노드 ] > [ B 핀 ]
+					-	A핀과 B핀에 연결순서 주의 !!!
+
+				2)	[ Append Vector 노드 ] > [ 출력핀 ]	--------->	[ Texture Sample 노드 ] > [ UVs ]
+
+
+
+		------------------
+		6)	Scalar 노드 추가.
+		------------------
+
+			-	개요
+				-	애니메이션 인덱스를 관리할 변수를 추가하여
+					참새 이미지를 순서대로 애니메이션 할 수 있게 함.
+
+			-	실습.
+				1)	[ Scalar 노드 ] 추가.	->	[ Scalar 노드 ] > [ Parameter Name ] : "Index".
+					
+				2)	[ Constant 노드 ( 0.5 ) ]의 값을 이미지 크기( 0.16667 )로 수정.
+
+				3)	[ Constant 노드 ( 0.16667 ) ] -----/----> [ Add 노드 ]
+
+				4)	[ Index 노드 ]와 [ Constant 노드 ( 0.16667 ) ] 을 곱함.
+					-	[ Multiply 노드 ]추가 후 연결.
+
+				5)	[ Multiply 노드 ] > [ 출력핀]	--------->	[ Add 노드 ]
+
+				6)	[ Index 노드 ] > [ Default Value ] 값을 0 ~ 5 까지 바꾸면서 확인.
+					-	5를 넘어가도 시퀀스는 반복됨.
+
+
+
+		------------------
+		7)	Customized UVs 사용.
+		------------------
+
+			-	개요.
+				-	퍼포먼스 최적화를 위해 Customized UVs를 사용.
+
+			-	실습.
+				1)	[ M_Bird 노드 ] > [ Num Customized UVs ] : 1
+					-	[ M_Bird 노드 ] 하단에 [ Customized UV0 입력핀 ] 생성.
+
+				2)	[ Append Vector 노드 ] > [ 출력핀 ]	--------->	[ M_Bird 노드 ] > [ Customized UV0 입력핀 ]
+
+
+			
+==================================================================//

@@ -11,7 +11,7 @@
 			적용하기..
 
 			참고 :  [ Sample_10.umap ]
-					[ MyMaterial_Grad_3.uasset ]
+					[ MyMaterial_Grad_2.uasset ]
 
 
 
@@ -27,9 +27,10 @@
 		2)	[ TextureCoordinate 노드 ],
 			[ LinearGradient 노드 ] 배치..
 
-			-	UV 좌표 데이터에서
-				U, V의 값을 분리하여
-				추출..
+				-	[ LinearGradient 노드 ]
+					-	UV 좌표 데이터에서
+						U, V의 값을 분리하여
+						추출..
 
 
 		3)	[ TextureCoordinate 노드 ]

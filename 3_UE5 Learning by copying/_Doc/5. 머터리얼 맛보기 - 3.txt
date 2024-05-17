@@ -5,13 +5,14 @@
 	-------------------
 	-	간단한 머터리얼
 		만들기 - 3..
+
+		참고 :  [ Sample_7.umap ]
+				[ MyMaterial_Emissive.uasset ]
 	-------------------
 
 		1]	이미시브 컬러로
 			발광체 만들기..
-						
-			참고 :  [ Sample_7.umap ]
-					[ MyMaterial_Emissive.uasset ]
+			
 
 			1)	[ MyMaterial.uasset ]를
 				복제하여 새로운 머터리얼 생성 후

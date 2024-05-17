@@ -11,11 +11,12 @@
 			그라데이션으로 표시되는
 			효과 연출..
 
-			참고 :  [ Sample_9.umap ]
-					[ MyMaterial_Grad.uasset ]
+			
 
 	----------
 	-	실습..
+		참고 :  [ Sample_9.umap ]
+				[ MyMaterial_Grad.uasset ]
 	----------
 
 		1)	머터리얼 생성 및

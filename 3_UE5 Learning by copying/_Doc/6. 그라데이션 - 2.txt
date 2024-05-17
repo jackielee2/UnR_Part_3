@@ -10,13 +10,11 @@
 			변화하는 값을 원하는 색상으로
 			적용하기..
 
-			참고 :  [ Sample_10.umap ]
-					[ MyMaterial_Grad_2.uasset ]
-
-
-
+			
 	----------
 	-	실습..
+		참고 :  [ Sample_10.umap ]
+				[ MyMaterial_Grad_2.uasset ]
 	----------
 
 

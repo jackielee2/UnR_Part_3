@@ -5,13 +5,14 @@
 	-------------------
 	-	간단한 머터리얼
 		만들기 - 4..
+
+		참고 :  [ Sample_8.umap ]
+				[ MyMaterial_Opacity.uasset ]
 	-------------------
 
 		-	오파시티로
 			투명도 조절..
-						
-			참고 :  [ Sample_8.umap ]
-					[ MyMaterial_Opacity.uasset ]
+			
 
 			1)	[ MyMaterial.uasset ]를
 				복제하여 새로운 머터리얼 생성 후

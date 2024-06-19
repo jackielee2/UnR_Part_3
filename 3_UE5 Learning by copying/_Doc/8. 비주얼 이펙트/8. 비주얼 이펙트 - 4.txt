@@ -1,0 +1,68 @@
+==============================================================================
+8.	비주얼 이펙트 - 4..
+==============================================================================
+
+	-----------------------
+	-	파티클에 사용할
+		머터리얼 준비하기..
+	-----------------------
+	
+		----------
+		-	실습..
+			[ 참고 : Material / MyNiagara / MySjpriteMaterial.uasset ]
+		----------
+
+			1)	머터리얼 생성..
+
+				-	이름..
+					-	MySjpriteMaterial..
+
+
+			2)	[ 블렌드 모드 ] 변경..
+
+				-	Translucent..
+					-	반투명 적용..
+
+
+			3)	[ 이미시브 컬러 ] 설정..
+
+				-	[ Constant4Vector ]로 노란색 설정..
+					-	R,G,B,A
+						->	1, 1, 0, 1
+				
+				-	[ 출력 핀 ]을
+					[ MySjpriteMaterial ]
+					> [ 이미시브 컬러 ]에 연결..
+
+
+			4)	[ RadialGradientExponential ] 배치..
+
+				-	원형 그라데이션 적용..
+
+
+			5)	[ RadialGradientExponential ]
+				> [ CenterPosition ] 지정..
+
+
+
+
+
+
+
+
+
+
+==============================================================================
+
+	[ 참고 ]
+
+		스팀 이펙트 - 이미터 업데이트 세팅 편집
+		https://dev.epicgames.com/documentation/ko-kr/unreal-engine/how-to-create-a-steam-effect-in-niagara-for-unreal-engine?application_version=5.3
+
+		이미터 업데이트 그룹
+		https://dev.epicgames.com/documentation/ko-kr/unreal-engine/emitter-update-group-reference-for-niagara-effects-in-unreal-engine?application_version=5.3
+
+		[Niagara Tutorial] 기초 2. 나이아가라 이미터 메커니즘
+		https://darkcatgame.tistory.com/71
+
+==============================================================================

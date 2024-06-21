@@ -2,50 +2,245 @@
 8.	비주얼 이펙트 - 4..
 ==============================================================================
 
-	-----------------------
-	-	파티클에 사용할
-		머터리얼 준비하기..
-	-----------------------
+	-------------------
+	-	파티클 맛보기..
+	-------------------
+
+		-----------------------
+		-	파티클에 사용할
+			머터리얼 준비하기..
+		-----------------------
 	
-		----------
-		-	실습..
-			[ 참고 : Material / MyNiagara / MySjpriteMaterial.uasset ]
-		----------
+			----------
+			-	실습..
+				[ 참고 : Material / MyNiagara / MySjpriteMaterial.uasset ]
+			----------
 
-			1)	머터리얼 생성..
+				-------------------
+				1)	머터리얼 생성..
 
-				-	이름..
-					-	MySjpriteMaterial..
+					-	이름..
+						-	MySjpriteMaterial..
 
+				-------------------
+				2)	[ 블렌드 모드 ] 변경..
 
-			2)	[ 블렌드 모드 ] 변경..
+					-	Translucent..
+						-	반투명 적용..
 
-				-	Translucent..
-					-	반투명 적용..
+				-------------------
+				3)	[ 이미시브 컬러 ] 설정..
 
-
-			3)	[ 이미시브 컬러 ] 설정..
-
-				-	[ Constant4Vector ]로 노란색 설정..
-					-	R,G,B,A
-						->	1, 1, 0, 1
+					-	[ Constant4Vector ]로 노란색 설정..
+						-	R,G,B,A
+							->	1, 1, 0, 1
 				
-				-	[ 출력 핀 ]을
-					[ MySjpriteMaterial ]
-					> [ 이미시브 컬러 ]에 연결..
+					-	[ 출력 핀 ]을
+						[ MySjpriteMaterial ]
+						> [ 이미시브 컬러 ]에 연결..
+
+				-------------------
+				4)	[ RadialGradientExponential ] 배치..
+
+					-	원형 그라데이션 적용..
+
+				-------------------
+				5)	[ RadialGradientExponential ]
+					> [ CenterPosition ] 지정..
+
+					-	[ Constant2Vector 노드 ] 이용..
+						-	x, y..
+							-	0.5, 0.5..
+
+					-	[ Constant2Vector 노드 ]
+						> [ 출력 핀 ]
+
+						--->
+					
+						[ RadialGradientExponential ]
+						> [ CenterPosition ]
+											
+				-------------------
+				6)	[ RadialGradientExponential ]
+					> [ Radius ] 설정..
+
+					-	[ Constant 노드 ] 이용..
+						-	값..
+							-	0.5..
+
+					-	[ Constant 노드 ]
+						> [ 출력 핀 ]
+
+						--->
+
+						[ RadialGradientExponential ]
+						> [ Radius ]
+
+				-------------------
+				7)	[ RadialGradientExponential ]를
+					[ 오파시티 ]에 연결..
+
+					-	[ 표시 모드 ]를
+						[ 큐브 ]로 설정 권장..
 
 
-			4)	[ RadialGradientExponential ] 배치..
 
-				-	원형 그라데이션 적용..
+		-----------------------
+		-	나이아가라에서
+			머터리얼 사용하기..
+			-	참고 :	[ VFX ]
+						> [ MyNiagara-2.uasset ]
+		-----------------------
+
+			-	[ MySjpriteMaterial ] 머터리얼을
+				적용..
+				-	[ 이미터 노드 ( Fountain ) ]
+					> [ 렌더 ]
+					> [ 스프라이트 렌더러 ]
+					> [ 디테일 ]
+					> [ 스프라이트 렌더러 ]
+					> [ 스프라이트 렌더링 ]
+					> [ 머터리얼 ]
 
 
-			5)	[ RadialGradientExponential ]
-				> [ CenterPosition ] 지정..
+
+		----------------------
+		-	파티클 크기 변경..
+			-	참고 :	[ VFX ]
+						> [ MyNiagara-3.uasset ]
+		----------------------
+
+			-	[ 이미터 노드 ( Fountain ) ]
+				> [ 파티클 스폰 ]
+				> [ Initialize Particle ]
+				> [ Sprite Attributes ]
+				> [ Sprite Size Mode ]
+					-	Random Uniform..
+				> [ Uniform Sprite Size Min / Max ]
+					-	10 / 100
 
 
 
+		-------------------
+		-	중력 비활성화..
+			-	참고 :	[ VFX ]
+						> [ MyNiagara-4.uasset ]
+		-------------------
 
+			-	[ 이미터 노드 ( Fountain ) ]
+				> [ 파티클 업데이트 ]
+				> [ Gravity Force ]
+					-	Off..
+
+
+		---------------
+		-	파티클 방출
+			속도 조절..
+			-	참고 :	[ VFX ]
+						> [ MyNiagara-5.uasset ]
+		---------------
+
+			-	[ 이미터 노드 ( Fountain ) ]
+				> [ 파티클 스폰 ]
+				> [ Add Velocity ]
+					-	[ Velocity Mode ]
+						-	파티클이 방출되는 형태..
+						-	종류..
+							-	In Cone..
+								-	기본값..
+								-	일정한 범위의 방향으로
+									힘이 가해짐..
+							-	Linear..
+								-	직선 형태로 힘이 가해짐..
+							-	From Point..
+								-	한 지점으로부터
+									모든 방향으로
+									힘이 가해짐..
+
+			-	[ Velocity Mode ]
+				-	[ From Point ]
+
+				[ Velocity Speed ]
+				-	[ Min ]	:	100
+					[ Max ]	:	1000
+				 
+
+
+		---------------
+		-	파티클 방출
+			범위 조정..
+			-	참고 :	[ VFX ]
+						> [ MyNiagara-6.uasset ]
+		---------------
+
+			-	[ 이미터 노드 ( Fountain ) ]
+				> [ 파티클 스폰 ]
+				> [ Shape Location ]
+
+			-	[ 디테일 ]
+				> [ Shape ]
+					> [ Shape Primitive ]
+					-	방출되는 형태 설정..
+					-	[ Cone ]으로 설정..
+				
+					> [ Cone Length ]
+					-	원뿔 길이..
+					-	1.0..
+
+					> [ Cone Angle ]
+					-	원뿔 각도..
+					-	90..
+
+					> [ Cone Inner Angle ]
+					-	안쪽 원뿔 각도..
+					-	이 각도를 지정하면
+						[ Cone Inner Angle ]에서
+						[ Cone Angle ] 사이의
+						각도로 방출..
+
+
+		-----------------
+		-	이미터 저장..
+			-	참고 :	[ VFX ]
+						> [ MyFountain.uasset ]
+		-----------------
+
+			-	개요..
+
+				-	다른 나이아가라 시스템에서도
+					사용할 수 있도록 에셋 파일로 저장..
+
+
+			-	절차..
+
+				1)	[ 이미터 노드 ( Fountain ) ] 위에
+					마우스 우클릭..
+
+				2)	[ 팝업창 ]
+					> [ 여기에서 에셋 생성 ]
+					클릭..
+
+				3)	이름 설정후 저장..
+					-	이름..
+						-	"MyFountain"..
+
+				4)	이미터 에디터 열림..
+					-	기본적으로는 나이아가라
+						시스템 에디터와 유사..
+
+						-	단, 나이아가라 시스템 노드가 없고
+							이미터의 노드만 있음..
+
+						-	에디터 사용법은 유사..
+
+
+
+		-------------------------
+		-	[ MyFountain 이미터 ]
+			사용하기..
+		-------------------------
+
+			-	
 
 
 

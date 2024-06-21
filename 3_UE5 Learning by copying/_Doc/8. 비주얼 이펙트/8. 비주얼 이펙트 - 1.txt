@@ -154,7 +154,7 @@
 	-	[ MyNiagara ]¿Í
 		Fountain..
 		-	Âü°í : [ VFX ]
-				   > [ MyNiagara.uasset ]
+				   > [ MyNiagara-1.uasset ]
 	-------------------
 	
 		----------------------

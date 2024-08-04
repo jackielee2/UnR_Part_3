@@ -30,7 +30,8 @@
 	--------------------
 	-	2개의 애니메이션
 		전환하기..
-		참고 : [ Character_Anim_5.umap ]
+		참고 :  [ Character_Anim_5.umap ],
+				[ MyTPP_BP2.uasset ]
 	--------------------
 
 		----------
@@ -41,11 +42,106 @@
 				애니메이션을 전환..
 
 
-		----------
-		-	적용..
-		----------
+		-------------
+		-	기본 구조
+			적용..
+		-------------
+
+			1)	[ BP 에디터 ] 열기..
+				
+
+			2)	[ Tutorial_Idle ]를
+				애님 그래프에 드래그 앤 드롭..
 
 
+			3)	[ 블랜드 포즈 ] 사용..
+
+				-	[ 블랜드 포즈 ]
+
+					-	상황에 따라 애니메이션 포즈를
+						전환하는 노드..
+
+					-	입력값을 확인하고 그에 따라
+						사용할 애니메이션 포즈를 전환..
+
+				-	추가..
+
+					-	[ 애님 그래프 ]
+						> [ 마우스 우클릭 ]
+						> [ blends poses by bool ] 선택.. 
+
+
+				-	주요 속성..
+				
+					-	[ Active Value ]
+
+						-	현재 값을 지정..
+						-	아무 값도 연결되지 않은 경우,
+							체크 상자를 이용하여
+							ON/OFF를 지정..
+
+
+					-	[ True Pose ] / [ False Pose ]
+
+						-	[ Active Value ]가 [ On ] / [ Off ]인 경우
+							실행할 애니메이션 포즈 지정..
+
+
+					-	[ True Blend Time ] / [ False Blend Time ]
+
+						-	[ Active Value ] 값이 [ True ] / [ False ]로
+							변했을때 애니매이션이 전환되는 데
+							걸리는 시간..
+
+
+					-	[ 출력 ]
+
+						-	현 시점의 애니메이션 포즈가
+							출력됨..
+						 
+					
+			4)	[ 블랜드 포즈 ] 설정..
+
+				-	기존 연결( Tutorial_Walk_Fwd ) 해제..
+
+					-	[ Output Pose ]
+						> [ Result ]
+						> [ 마우스 우클릭 ]
+						> [ 이 링크 끊기 ] 선택..
+
+
+			5)	[ Tutorial_Walk_Fwd ]
+
+				---->
+				
+				[ Blend Poses by bool ]
+				> [ True Pose ] 
+
+
+			6)	[ Tutorial_Idle ]
+
+				---->
+				
+				[ Blend Poses by bool ]
+				> [ False Pose ] 
+
+
+			7)	블렌드 시간 설정..
+
+				-	[ True Blend Time ] / [ False Blend Time ]의
+					값을 모두 1.0으로 변경..
+						
+				
+			8)	[ Blend Poses by bool ]
+				> [ 출력 핀 ]
+
+				---->
+
+				[ Blend Poses by bool ]
+				> [ Result ]
+
+
+			9)	컴파일 및 저장..
 
 
 ==============================================================================

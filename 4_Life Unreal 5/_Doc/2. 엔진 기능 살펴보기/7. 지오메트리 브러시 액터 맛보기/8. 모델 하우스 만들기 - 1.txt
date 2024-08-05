@@ -11,7 +11,7 @@
 			> [ 새 레벨 ]
 				-	[ Basic ] 선택..
 				-	이름..
-					-	"GBActor_Test"
+					-	"GBActor_Test_1"
 
 
 

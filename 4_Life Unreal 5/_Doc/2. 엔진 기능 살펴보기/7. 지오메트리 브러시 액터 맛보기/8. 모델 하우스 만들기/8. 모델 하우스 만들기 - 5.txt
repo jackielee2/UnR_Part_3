@@ -73,7 +73,7 @@
 		-	머터리얼
 			적용하기..
 			참고 : [ GBActor_Test ]
-					> [ GBActor_Test_5 ]
+					> [ GBActor_Test_5.umap ]
 		--------------
 
 			---------------------

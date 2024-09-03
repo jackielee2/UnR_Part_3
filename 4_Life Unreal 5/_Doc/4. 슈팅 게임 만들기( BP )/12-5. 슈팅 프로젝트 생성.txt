@@ -3,20 +3,89 @@
 ===============================================================
 
 
-	-------------------
-	-	
-	-------------------
+	---------------
+	-	BP에 적용..
+	---------------
 
 		----------
-		-	
+		-	개요..
 		----------
 
-			-	
+			-	등록된 키 입력 정보를
+				블루프린트에 적용..
+
+
+		----------
+		-	적용..
+			참고 :	[ BP_Player_2.uasset ]
+		----------
+
+			1)	[ BP_Player_2 ] 열기..
+
+
+			2)	[ Get Player Player ] 노드 생성..
+							
+				-	Player Player..
+
+					-	Pawn과 그것을 제어하려는
+						유저 사이의 인터페이스..
+
+					-	폰을 조종하는 역할..
+
+					-	플레이어의 의지를 대변하는
+						클래스..
+
+
+			3)	[ Get Player Player ]
+				> [ Return Value ]
+				--->	[ Get Enhanced Input Local Player Subsystem ]
+
+				-	[ Get Enhanced Input Local Player Subsystem ]
+
+					-	사용자의 입력 정보를
+						[ Input Action ]노드에 연결..
+						-	바인딩..
+
+
+
+			4)	[ Get Enhanced Input Local Player Subsystem ]
+				> [ Return ]
+				--->	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 ===============================================================
 
 	[ 참고 ]
 
+		[UE4] Programming - Player Controller
+		https://wergia.tistory.com/139
+
+		[UE5] PlayerController, Cast
+		https://velog.io/@dltmdrl1244/%EC%96%B8%EB%A6%AC%EC%96%BC%EC%97%94%EC%A7%84-15.-PlayerController
+		
+		[UE4] PlayerController
+		https://coding-hell.tistory.com/32
 
 ===============================================================

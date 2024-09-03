@@ -144,7 +144,7 @@
 
 							-	[ 게임 모드 베이스 ]
 							-	이름..
-								-	"BP_GameModeBase"
+								-	"BP_GameModeBase_1"
 
 
 				---------------------------
@@ -158,7 +158,7 @@
 						> [ Default Modes ]
 						> [ 기본 게임 모드 ]
 
-							-	[ BP_GameModeBase ]
+							-	[ BP_GameModeBase_1 ]
 
 
 

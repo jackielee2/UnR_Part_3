@@ -14,8 +14,140 @@
 			-	마우스 왼쪽 버튼을 클릭하면
 				총알이 발사되도록 처리..
 
+			-	키 맵핑, 입력 바인딩 필요..
+
 
 				
+		----------
+		-	적용..
+		----------
+
+			1)	[ Input Action ] 만들기..
+				
+				ㄴ	참고 :	[ IA_Fire.uasset ]
+				
+				ㄴ	총알 발사 이벤트 처리..
+
+					ㄴ	[ 이름 ]
+						-	" IA_Fire "
+
+					ㄴ	[ 값 타입 ]
+						-	[ Digital (bool) ]
+
+
+
+			2)	[ 입력 매핑 컨텍스트에 ] 할당..
+
+				ㄴ	참고 : [ IMC_PlayerInput_3.uasset ]
+
+
+
+			3)	[ BP_Player ]에 적용..
+
+				ㄴ	참고 :	[ BP_Player_8.uasset ]
+
+					ㄴ	[ IA_Fire ] 이벤트 추가..
+
+						ㄴ	[ BP_Player_8 ]
+							> [ 마우스 우클릭 ]
+							> [ Enhanced Action Events ]
+							> [ IA_Fire ]
+
+
+			4)	총알 생성 기능 구현..
+
+				ㄴ	참고 :	[ BP_Player_8.uasset ]
+
+					ㄴ	개요..
+					
+						ㄴ	[ IA_Fire ] 이벤트 발생시
+							지정된 위치에 총알 액터를 
+							월드 공간에 생성..
+
+
+					ㄴ	적용..
+
+						1)	총알 생성 기능 추가..
+							
+							ㄴ	[ Spawn Actor From Class ]
+
+								ㄴ	지정된 트랜스폼 액터 생성..
+
+								ㄴ	[ Class ]
+									
+									ㄴ	[ BP_Bullet ]
+
+
+						2)	총알 발사 지점 설정..
+
+							ㄴ	[ Arrow Component ] 추가..
+
+								ㄴ	눈에 보이지 않는
+									특정한 위치와 회전값을
+									필요로 할때 사용..
+
+								ㄴ	주로 스폰 기능에 적용..
+
+
+							ㄴ	[ BP_Bullet ]
+								> [ 컴포넌트 ]
+								> [ +추가 ]
+								> [ Arrow ]
+
+								ㄴ	이름..
+									ㄴ	Fire Position..
+
+								ㄴ	트랜스폼..
+									ㄴ	위치..
+										-	0,0,100
+									ㄴ	회전..
+										-	0,90,0
+
+
+
+						3)	총알 발사 지점 적용..
+						
+							ㄴ	참고 :	[ BP_Player_8.uasset ]
+
+
+							
+						4)	충돌 설정..
+
+							ㄴ	[ Spawn Actor From Class ]
+								> [ Collision Handling Override ]
+
+								ㄴ	액터를 월드공간에 생성할때
+									다른 액터와 충돌하게 될수 있으므로
+									그런 상황에서 액터를 어떻게
+									처리할지 설정..
+
+								ㄴ	주요 속성..
+
+									ㄴ	Always Spawn, Ignore Collision..
+										-	충돌과 상관없이 무조건 생성..
+
+									ㄴ	Try To Adjust Location, But Always Spawn..
+										-	근처에 충돌하지 않을 수 있는
+											지점을 탐색 후 생성..
+										-	탐색 실패 하면 충돌하더라도
+											기본 위치에 생성..
+
+									ㄴ	Try To Adjust Location, Don't Spawn it still Colliding..
+										-	근처에 충돌하지 않을 수 있는
+											지점을 탐색 후 생성..
+										-	탐색 실패 하면 액터를
+											생성하지 않음..
+
+									ㄴ	Do Not Spawn..
+										-	충돌 발생시 액터를
+											생성하지 않음..
+
+
+								
+						5)	실행 및 테스트..
+
+							ㄴ	마우스 좌클릭시 총알이 발사됨..
+
 
 
 ===============================================================
